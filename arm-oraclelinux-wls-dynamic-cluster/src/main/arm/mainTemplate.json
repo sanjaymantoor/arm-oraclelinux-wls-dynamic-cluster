@@ -240,11 +240,11 @@
 			}
 		},
 		"uploadedCustomIdentityKeyStoreData": {
-			"type": "string",
+			"type": "securestring",
 			"metadata": {
 				"description": "Custom Identity KeyStore Data"
 			},
-			"defaultValue": "customIdentityKeyStoreData"
+			"defaultValue": "[newGuid()]"
 		},
 		"uploadedCustomIdentityKeyStorePassphrase": {
 			"type": "securestring",

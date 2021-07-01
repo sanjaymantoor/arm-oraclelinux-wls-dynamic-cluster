@@ -3,10 +3,11 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "uploadedCustomIdentityKeyStoreData": {
-            "type": "string",
+            "type": "securestring",
             "metadata": {
                 "description": "Custom Identity KeyStore Data"
-            }
+            },
+            "defaultValue": "[newGuid()]"
         },
         "uploadedCustomIdentityKeyStorePassphrase": {
             "type": "string",

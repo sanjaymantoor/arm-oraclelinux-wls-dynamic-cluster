@@ -473,7 +473,7 @@ jobs:
         id: verify-wls-access
         run: |
           echo "Verifying Weblogic Server Access"
-          bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/verify-wls-access.sh "$wlsPublicIP" ${adminConsolePort} $wlsUserName $wlsPassword "$managedServers"
+          bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/verify-wls-access.sh <<< "$wlsPublicIP ${adminConsolePort} $wlsUserName $wlsPassword $managedServers"
 
       # Fix failure that caused by remote server closed.
       - name: Restart remote SSH agent

@@ -4,6 +4,11 @@
 #
 read oracleHome wlsAdminHost wlsAdminPort wlsUserName wlsPassword jdbcDataSourceName dsConnectionURL dsUser dsPassword wlsClusterName
 
+#debug
+echo "Arguments passed:"
+echo $oracleHome $wlsAdminHost $wlsAdminPort $wlsUserName $wlsPassword $jdbcDataSourceName $dsConnectionURL $dsUser $dsPassword $wlsClusterName
+
+
 if [ -z ${wlsClusterName} ]; then
 	wlsClusterName='cluster1'
 fi
@@ -156,6 +161,10 @@ ELEMENTS=${#args[@]}
 createTempFolder
 validateInput
 createJDBCSource_model
+
+#Debug
+cat ${scriptPath}/create_datasource.py
+sleep 30m
 
 sudo chown -R oracle:oracle ${scriptPath}
 runuser -l oracle -c ". $oracleHome/oracle_common/common/bin/setWlstEnv.sh; java $WLST_ARGS weblogic.WLST ${scriptPath}/create_datasource.py"

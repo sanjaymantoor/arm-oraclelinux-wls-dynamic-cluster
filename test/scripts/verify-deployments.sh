@@ -5,6 +5,11 @@
 
 read prefix location template githubUserName testbranchName scriptsDir
 
+
+echo "Passed argument values:"
+echo "prefix: $prefix location:$location template:$template githubUserName:$githubUserName testbranchName:$testbranchName scriptsDir:$scriptsDir"
+
+
 groupName=${prefix}-preflight
 
 # create Azure resources for preflight testing

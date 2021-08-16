@@ -164,7 +164,6 @@ createJDBCSource_model
 
 #Debug
 cat ${scriptPath}/create_datasource.py
-sleep 30m
 
 sudo chown -R oracle:oracle ${scriptPath}
 runuser -l oracle -c ". $oracleHome/oracle_common/common/bin/setWlstEnv.sh; java $WLST_ARGS weblogic.WLST ${scriptPath}/create_datasource.py"

@@ -101,7 +101,7 @@ jobs:
       - name: Validate deployment templates for different combinations of service integration
         id: validate-deployment-templates
         run: |
-          bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/verify-deployments.sh \
+          bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/verify-deployments.sh <<< \
             ${{ github.run_id }}${{ github.run_number }} ${location} \
             arm-oraclelinux-wls-dynamic-cluster/arm-oraclelinux-wls-dynamic-cluster/target/arm/mainTemplate.json \
             ${userName} ${testbranchName} arm-oraclelinux-wls-dynamic-cluster/test/scripts
@@ -283,7 +283,7 @@ jobs:
           arm-oraclelinux-wls-dynamic-cluster/test/scripts/verify-servers-lifecycle.sh
 
           echo "Generate deployment parameters..."
-          bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy.sh \
+          bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy.sh <<< \
             arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-test.json \
             $location \
             $wlsPassword \
@@ -499,7 +499,7 @@ jobs:
           azcliversion: ${{ env.azCliVersion }}
           inlineScript: |
             # Generate parameters for db template deployment
-            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-db.sh \
+            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-db.sh  <<< \
             arm-oraclelinux-wls-dynamic-cluster/test/scripts/ \
             ${{ env.adminVMName }} \
             ${{ env.wlsPassword}} \
@@ -525,7 +525,7 @@ jobs:
           azcliversion: ${{ env.azCliVersion }}
           inlineScript: |
             # Generate parameters for ELK template deployment
-            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-elk.sh \
+            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-elk.sh <<< \
             arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-elk.json \
             ${{ env.adminVMName }} \
             ${{ env.elkPassword }} \
@@ -565,7 +565,7 @@ jobs:
           azcliversion: ${{ env.azCliVersion }}
           inlineScript: |
             # Generate parameters for Coherence template deployment
-            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-coherence.sh \
+            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-coherence.sh <<< \
             arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-coherence.json \
             ${{ env.adminVMName }} \
             ${{ env.wlsPassword }} \
@@ -607,7 +607,7 @@ jobs:
           inlineScript: |
             echo "add two new nodes"
             echo "generate add-node parameters"
-            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-addnode.sh \
+            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-addnode.sh  <<< \
             arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-addnode.json \
               ${{ env.wlsPassword }} \
               ${{ env.adminVMName }}:${adminConsolePort} \
@@ -666,7 +666,7 @@ jobs:
           inlineScript: |
             echo "add new cache server"
             echo "generate parameters"
-            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-addnode-coherence.sh \
+            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-addnode-coherence.sh  <<< \
             arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-addnode-coherence.json \
               ${{ env.wlsPassword }} \
               ${{ env.adminVMName }} \
@@ -720,7 +720,7 @@ jobs:
           azcliversion: ${{ env.azCliVersion }}
           inlineScript: |
             echo "generate delete-node parameters"
-            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-deletenode.sh \
+            bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-deletenode.sh <<< \
             arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-deletenode.json \
               ${{ env.adminVMName }} \
               ${{ env.location }} \

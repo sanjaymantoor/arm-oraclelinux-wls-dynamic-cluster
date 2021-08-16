@@ -102,9 +102,9 @@ jobs:
         id: validate-deployment-templates
         run: |
           bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/verify-deployments.sh <<< \
-            ${{ github.run_id }}${{ github.run_number }} ${location} \
+            "${{ github.run_id }}${{ github.run_number }} ${location} \
             arm-oraclelinux-wls-dynamic-cluster/arm-oraclelinux-wls-dynamic-cluster/target/arm/mainTemplate.json \
-            ${userName} ${testbranchName} arm-oraclelinux-wls-dynamic-cluster/test/scripts
+            ${userName} ${testbranchName} arm-oraclelinux-wls-dynamic-cluster/test/scripts"
 
       - name: Generate artifact file name and path
         id: artifact_file
@@ -284,7 +284,7 @@ jobs:
 
           echo "Generate deployment parameters..."
           bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy.sh <<< \
-            arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-test.json \
+            "arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-test.json \
             $location \
             $wlsPassword \
             $wlsDomainName \
@@ -296,7 +296,7 @@ jobs:
             $adminVMName \
             $imageUrn \
             $testbranchName \
-            $userName
+            $userName"
 
       - name: Accept Image Terms
         id: accept-terms
@@ -500,7 +500,7 @@ jobs:
           inlineScript: |
             # Generate parameters for db template deployment
             bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-db.sh  <<< \
-            arm-oraclelinux-wls-dynamic-cluster/test/scripts/ \
+            "arm-oraclelinux-wls-dynamic-cluster/test/scripts/ \
             ${{ env.adminVMName }} \
             ${{ env.wlsPassword}} \
             ${{ env.dbName }} \
@@ -508,7 +508,7 @@ jobs:
             ${{ env.wlsUserName }} \
             ${{ env.wlsPassword }} \
             ${{ env.userName }} \
-            ${{ env.testbranchName }}
+            ${{ env.testbranchName }}"
             echo "Deploy DB Template..."
             az group deployment create \
             --verbose \
@@ -526,7 +526,7 @@ jobs:
           inlineScript: |
             # Generate parameters for ELK template deployment
             bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-elk.sh <<< \
-            arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-elk.json \
+            "arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-elk.json \
             ${{ env.adminVMName }} \
             ${{ env.elkPassword }} \
             ${{ env.elkURI }} \
@@ -540,7 +540,7 @@ jobs:
             ${{ env.managedServerPrefix }} \
             ${{ env.maxDynamicClusterSize }} \
             ${{ env.dynamicClusterSize }} \
-            ${{ github.run_id }}${{ github.run_number }}
+            ${{ github.run_id }}${{ github.run_number }}"
 
             echo "Deploy ELK Template..."
             az group deployment create \
@@ -566,7 +566,7 @@ jobs:
           inlineScript: |
             # Generate parameters for Coherence template deployment
             bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-coherence.sh <<< \
-            arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-coherence.json \
+            "arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-coherence.json \
             ${{ env.adminVMName }} \
             ${{ env.wlsPassword }} \
             "${{ matrix.images }}" \
@@ -577,7 +577,7 @@ jobs:
             ${{ env.wlsPassword }} \
             ${{ env.userName }} \
             ${{ env.testbranchName }} \
-            ${{ env.managedServerPrefix }}
+            ${{ env.managedServerPrefix }}"
 
             echo "Deploy Coherence Template..."
             az group deployment create \
@@ -608,7 +608,7 @@ jobs:
             echo "add two new nodes"
             echo "generate add-node parameters"
             bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-addnode.sh  <<< \
-            arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-addnode.json \
+            "arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-addnode.json \
               ${{ env.wlsPassword }} \
               ${{ env.adminVMName }}:${adminConsolePort} \
               weblogic \
@@ -623,7 +623,7 @@ jobs:
               ${{ env.testbranchName }} \
               ${{ env.managedServerPrefix }} \
               ${{ env.dynamicClusterSize }} \
-              ${{ env.maxDynamicClusterSize }}
+              ${{ env.maxDynamicClusterSize }}"
 
             echo "deploy add-node template to create new nodes"
             az group deployment validate \
@@ -667,7 +667,7 @@ jobs:
             echo "add new cache server"
             echo "generate parameters"
             bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-addnode-coherence.sh  <<< \
-            arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-addnode-coherence.json \
+            "arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-addnode-coherence.json \
               ${{ env.wlsPassword }} \
               ${{ env.adminVMName }} \
               weblogic \
@@ -680,7 +680,7 @@ jobs:
               ${{ env.wlsPassword }} \
               ${{ env.userName }} \
               ${{ env.testbranchName }} \
-              ${{ env.managedServerPrefix }}
+              ${{ env.managedServerPrefix }}"
             echo "deploy add-node template to create new nodes"
             az group deployment validate \
               -g ${resourceGroup} \
@@ -721,14 +721,14 @@ jobs:
           inlineScript: |
             echo "generate delete-node parameters"
             bash arm-oraclelinux-wls-dynamic-cluster/test/scripts/gen-parameters-deploy-deletenode.sh <<< \
-            arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-deletenode.json \
+            "arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-deletenode.json \
               ${{ env.adminVMName }} \
               ${{ env.location }} \
               ${{ env.wlsUserName }} \
               ${{ env.wlsPassword }} \
               ${{ env.userName }} \
               ${{ env.testbranchName }} \
-              ${{ env.managedServerPrefix }}
+              ${{ env.managedServerPrefix }}"
             echo "Run deletenode-cli.sh to remove nodes"
             chmod ugo+x ${artifactNameOfDeleteNode}/scripts/deletenode-cli.sh
             ${artifactNameOfDeleteNode}/scripts/deletenode-cli.sh \

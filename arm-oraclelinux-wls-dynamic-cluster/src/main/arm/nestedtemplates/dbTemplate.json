@@ -85,7 +85,6 @@
         }
     },
     "variables": {
-        "const_singleQuote": "'",
         "const_wlsAdminPort": "7005",
         "const_wlsHome": "/u01/app/wls/install/oracle/middleware/oracle_home",
         "name_scriptFilePrefix": "datasourceConfig-",

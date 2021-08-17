@@ -96,8 +96,8 @@
     "resources": [
         {
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "${azure.apiVersion}",
-            "name": "${dynamic.database.start}",
+            "apiVersion": "2020-06-01",
+            "name": "pid-f5215b75-9465-51b6-9b1d-69bc41e3e6f4",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -110,7 +110,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
-            "apiVersion": "${azure.apiVersion}",
+            "apiVersion": "2020-06-01",
             "name": "[concat(parameters('adminVMName'),'/newuserscript')]",
             "location": "[parameters('location')]",
             "properties": {
@@ -132,8 +132,8 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "${azure.apiVersion}",
-            "name": "${dynamic.database.end}",
+            "apiVersion": "2020-06-01",
+            "name": "pid-4a2ba562-fbca-552d-9f02-51e88844a911",
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
             ],
@@ -149,8 +149,8 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "${azure.apiVersion}",
-            "name": "${database.oracle}",
+            "apiVersion": "2020-06-01",
+            "name": "pid-692b2d84-72f5-5992-a15d-0d5bcfef040d",
             "condition": "[if(contains(parameters('databaseType'), 'oracle'), bool('true'), bool('false'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
@@ -167,8 +167,8 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "${azure.apiVersion}",
-            "name": "${database.postgresql}",
+            "apiVersion": "2020-06-01",
+            "name": "pid-935df06e-a5d5-5bf1-af66-4c1eb71dac7a",
             "condition": "[if(contains(parameters('databaseType'), 'postgresql'), bool('true'), bool('false'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
@@ -185,8 +185,8 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "${azure.apiVersion}",
-            "name": "${database.sqlserver}",
+            "apiVersion": "2020-06-01",
+            "name": "pid-3569588c-b89d-5567-84ee-a2c633c7204c",
             "condition": "[if(contains(parameters('databaseType'), 'sqlserver'), bool('true'), bool('false'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"

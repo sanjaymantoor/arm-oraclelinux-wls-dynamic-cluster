@@ -569,7 +569,7 @@ jobs:
             "arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-coherence.json \
             ${{ env.adminVMName }} \
             ${{ env.wlsPassword }} \
-            "${{ matrix.images }}" \
+            ${{ matrix.images }} \
             ${{ env.location }} \
             ${storageAccount} \
             ${{ env.wlsDomainName }} \

@@ -6,9 +6,6 @@
 
 read parametersPath adminVMName adminPasswordOrKey skuUrnVersion location storageAccountName wlsDomainName wlsusername wlspassword gitUserName testbranchName managedServerPrefix
 
-echo "Properties passed"
-echo "$parametersPath $adminVMName $adminPasswordOrKey $skuUrnVersion $location $storageAccountName $wlsDomainName $wlsusername $wlspassword $gitUserName $testbranchName $managedServerPrefix"
-
 cat <<EOF > ${parametersPath}
 {
      "adminVMName":{
@@ -53,4 +50,3 @@ cat <<EOF > ${parametersPath}
     }
 EOF
 
-cat ${parametersPath}

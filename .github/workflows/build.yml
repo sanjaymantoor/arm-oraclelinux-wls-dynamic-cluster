@@ -579,10 +579,6 @@ jobs:
             ${{ env.testbranchName }} \
             ${{ env.managedServerPrefix }}"
             
-            echo "Coherence deployment parameters file"
-            cat  arm-oraclelinux-wls-dynamic-cluster/test/scripts/parameters-deploy-coherence.json 
-            echo "Coherence template file"
-            cat ${artifactName}/nestedtemplates/coherenceTemplate.json
             echo "Deploy Coherence Template..."
             az group deployment create \
             --debug \
